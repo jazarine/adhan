@@ -5,6 +5,7 @@ import time
 import sys
 from os.path import dirname, abspath, join as pathjoin
 import argparse
+import subprocess
 
 root_dir = dirname(abspath(__file__))
 sys.path.insert(0, pathjoin(root_dir, 'crontab'))
@@ -14,7 +15,9 @@ PT = PrayTimes()
 
 from crontab import CronTab
 system_cron = CronTab(user='pi')
-system_cron.env['XDG_RUNTIME_DIR'] = '/run/user/1000'
+
+userid = subprocess.check_output(['id','-u'])  #run `id -u` .
+system_cron.env['XDG_RUNTIME_DIR'] = '/run/user/' + userid.decode('utf-8')
 
 #HELPER FUNCTIONS
 #---------------------------------
@@ -121,11 +124,11 @@ isDst = time.localtime().tm_isdst
 now = datetime.datetime.now()
 strXDGRuntimeCommand = 'XDG_RUNTIME_DIR=/run/user/1000'
 # strPlayFajrAzaanMP3Command = 'omxplayer --vol {} -o local {}/Adhan-fajr.mp3 > /dev/null 2>&1'.format(fajr_azaan_vol, root_dir)
-strPlayFajrAzaanMP3Command = 'cvlc "https://www.youtube.com/watch?v=IWOAqfpUajs" --novideo --run-time 210 > /dev/null 2>&1'
+strPlayFajrAzaanMP3Command = 'cvlc "https://www.youtube.com/watch?v=IWOAqfpUajs" --play-and-exit --novideo --run-time 210 > /dev/null 2>&1'
 # strPlayFajrAzaanMP3Command = 'cvlc "http://uk2.internet-radio.com:8151/live" --run-time 5 > /dev/null 2>&1'
 # strPlayAzaanMP3Command = 'omxplayer --vol {} -o local {}/Adhan-Madinah.mp3 > /dev/null 2>&1'.format(azaan_vol, root_dir)
 # strPlayAzaanMP3Command = 'cvlc "http://uk2.internet-radio.com:8151/live" --run-time 5 > /dev/null 2>&1'
-strPlayAzaanMP3Command = 'cvlc "https://www.youtube.com/watch?v=InBjDUvLFEo" --novideo --run-time 150 > /dev/null 2>&1'
+strPlayAzaanMP3Command = 'cvlc "https://www.youtube.com/watch?v=InBjDUvLFEo" --play-and-exit --novideo --run-time 150 > /dev/null 2>&1'
 # strPlayDhuhrAzaanMP3Command = 'cvlc "https://www.youtube.com/watch?v=eOXLsH__e3A" --novideo --run-time 121 > /dev/null 2>&1'
 # strPlayAsrAzaanMP3Command = 'cvlc "https://www.youtube.com/watch?v=InBjDUvLFEo" --novideo --run-time 121 > /dev/null 2>&1'
 strUpdateCommand = 'python {}/updateAzaanTimersForLiveAudio.py >> {}/adhan.log 2>&1'.format(root_dir, root_dir)

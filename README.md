@@ -13,9 +13,11 @@ This projects uses a python script which automatically calculates [adhan](https:
   * `$ sudo apt-get install git`
 2. Install vlc: Go to raspberry pi terminal (command line interface) and install `vlc`
   * `$ sudo apt install -y vlc`
-2. Clone repo: Clone this repository on your raspberry pi in your `home` directory. (Tip: run `$ cd ~` to go to your home directory)
+3. Clone repo: Clone this repository on your raspberry pi in your `home` directory. (Tip: run `$ cd ~` to go to your home directory)
   * `$ git clone <get repo clone url from github and put it here>`
-  * After doing that you should see an `adhan` direcotry in your `home` directory. 
+  * After doing that you should see an `adhan` directory in your `home` directory.
+4. If you try playing any local audio with `cvlc` and you don't hear audio, you might need to run this:
+  * `$ sudo modprobe snd_bcm2835` 
 
 ## Run it for the first time
 Run this command (For default, original functionality):
