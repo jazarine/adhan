@@ -11,15 +11,22 @@ This projects uses a python script which automatically calculates [adhan](https:
 ## Instructions
 1. Install git: Go to raspberry pi terminal (command line interface) and install `git`
   * `$ sudo apt-get install git`
+2. Install vlc: Go to raspberry pi terminal (command line interface) and install `vlc`
+  * `$ sudo apt install -y vlc`
 2. Clone repo: Clone this repository on your raspberry pi in your `home` directory. (Tip: run `$ cd ~` to go to your home directory)
   * `$ git clone <get repo clone url from github and put it here>`
   * After doing that you should see an `adhan` direcotry in your `home` directory. 
 
 ## Run it for the first time
-Run this command:
+Run this command (For default, original functionality):
 
 ```bash
 $ python /home/pi/adhan/updateAzaanTimers.py --lat <YOUR_LAT> --lng <YOUR_LNG> --method <METHOD>
+```
+
+Run this command for playing audio files from Youtube/other streams:
+```bash
+$ python /home/pi/adhan/updateAzaanTimersForLiveAudio.py --lat <YOUR_LAT> --lng <YOUR_LNG> --method <METHOD>
 ```
 
 Replace the arguments above with your location information and calculation method:
